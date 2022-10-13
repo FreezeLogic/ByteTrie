@@ -32,6 +32,8 @@ func main() {
 	fmt.Println(trie.Search([]byte{0x00, 0xF0}))              // False - Shorter than 3
 	fmt.Println(trie.Search([]byte{0x00, 0xF0, 0xFF, 0xFD}))  // True - Same like 3
 	fmt.Println(trie.Search([]byte{0x01, 0xF0, 0xFD}))        // False - Not represented
-	fmt.Println(trie.Search([]byte{0x0F, 0xFF}))              // False - Not represented
-  
+	fmt.Println(trie.Search([]byte{0x0F, 0xFF}))              // False - Not represented 
 ```
+
+## License
+This library is distributed under the MIT license found in the LICENSE file.
