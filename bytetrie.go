@@ -1,63 +1,62 @@
 package bytetrie
 
-type Node struct {
-	Items []*Item
+type node struct {
+	items []*item
 }
-type Item struct {
-	Val   byte
-	Last  bool
-	Child *Node
+type item struct {
+	val   byte
+	last  bool
+	child *node
 }
 
-func NewTrie() *Node {
-	n := new(Node)
-	n.Items = *new([]*Item)
+func NewTrie() *node {
+	n := new(node)
+	n.items = *new([]*item)
 	return n
 }
 
-func (n *Node) Insert(b []byte) {
+func (n *node) Insert(b []byte) {
 	node := n
-	tmpitem := new(Item)
+	tmpitem := new(item)
 	for _, vb := range b {
 		newitem := node.isExist(vb)
 		if newitem == nil {
-			node.Items = append(node.Items, &Item{
-				Val:   vb,
-				Last:  false,
-				Child: NewTrie(),
+			node.items = append(node.items, &item{
+				val:   vb,
+				last:  false,
+				child: NewTrie(),
 			})
-			tmpitem = node.Items[len(node.Items)-1]
-			node = tmpitem.Child
+			tmpitem = node.items[len(node.items)-1]
+			node = tmpitem.child
 		} else {
 			tmpitem = newitem
-			node = tmpitem.Child
+			node = tmpitem.child
 		}
 	}
-	tmpitem.Last = true
+	tmpitem.last = true
 }
 
-func (n *Node) Search(b []byte) bool {
+func (n *node) Search(b []byte) bool {
 	node := n
-	tmpitem := new(Item)
+	tmpitem := new(item)
 	for _, vb := range b {
 		item := node.isExist(vb)
 		if item == nil {
 			return false
 		} else {
 			tmpitem = item
-			node = tmpitem.Child
+			node = tmpitem.child
 		}
 	}
-	if tmpitem.Last {
+	if tmpitem.last {
 		return true
 	}
 	return false
 }
 
-// If item  exist return pointer to itemm, if doesn't return nil' 
-func (n *Node) isExist(b byte) *Item {
-	for _, v := range n.Items {
-		if v.Val == b {
+func (n *node) isExist(b byte) *item {
+	for _, v := range n.items {
+		if v.val == b {
 			return v
 		}
 	}
