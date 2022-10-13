@@ -54,6 +54,7 @@ func (n *Node) Search(b []byte) bool {
 	return false
 }
 
+// If item  exist return pointer to itemm, if doesn't return nil' 
 func (n *Node) isExist(b byte) *Item {
 	for _, v := range n.Items {
 		if v.Val == b {
