@@ -7,7 +7,23 @@ Implementation of the [Trie](https://en.wikipedia.org/wiki/Trie) algorithm for b
 go get github.com/dghubble/trie
 ```
 ## Usage
+First we need to initialize Trie
+```go
+trie := bytetrie.NewTrie()
+```
+When this is done, we can insert some data using the Insert method.
+```go
+trie.Insert([]byte{0x00, 0xFF})	
+```
+And finally we can find our data using the Search method.
+```go
+trie.Search([]byte{0x00, 0xFF})
+```
+It will return bool variable. True if byte sequence presented in Trie and False otherwise.
+But keep in mind what Search is length sensitive.
+If you Trie contain byte sequence '0x00, 0xFF, 0xFF', Search method will return false for '0x00, 0xFF'.
 
+Full example with comments below.
 ```go
 package main
 
