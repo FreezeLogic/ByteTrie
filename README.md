@@ -52,4 +52,4 @@ func main() {
 ```
 
 ## License
-This library is distributed under the MIT license found in the LICENSE file.
+This package is distributed under the MIT license found in the LICENSE file.
