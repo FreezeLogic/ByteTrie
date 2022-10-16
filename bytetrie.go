@@ -1,27 +1,27 @@
 package bytetrie
 
-type node struct {
-	items []*item
+type Node struct {
+	items []*Item
 }
-type item struct {
+type Item struct {
 	val   byte
 	last  bool
-	child *node
+	child *Node
 }
 
-func NewTrie() *node {
-	n := new(node)
-	n.items = *new([]*item)
+func NewTrie() *Node {
+	n := new(Node)
+	n.items = *new([]*Item)
 	return n
 }
 
-func (n *node) Insert(b []byte) {
+func (n *Node) Insert(b []byte) {
 	node := n
-	tmpitem := new(item)
+	tmpitem := new(Item)
 	for _, vb := range b {
 		newitem := node.isExist(vb)
 		if newitem == nil {
-			node.items = append(node.items, &item{
+			node.items = append(node.items, &Item{
 				val:   vb,
 				last:  false,
 				child: NewTrie(),
@@ -36,9 +36,9 @@ func (n *node) Insert(b []byte) {
 	tmpitem.last = true
 }
 
-func (n *node) Search(b []byte) bool {
+func (n *Node) Search(b []byte) bool {
 	node := n
-	tmpitem := new(item)
+	tmpitem := new(Item)
 	for _, vb := range b {
 		item := node.isExist(vb)
 		if item == nil {
@@ -54,7 +54,7 @@ func (n *node) Search(b []byte) bool {
 	return false
 }
 
-func (n *node) isExist(b byte) *item {
+func (n *Node) isExist(b byte) *Item {
 	for _, v := range n.items {
 		if v.val == b {
 			return v
