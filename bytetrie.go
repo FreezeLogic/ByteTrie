@@ -9,7 +9,7 @@ type Item struct {
 	child *Node
 }
 
-func NewTrie() *Node {
+func New() *Node {
 	n := new(Node)
 	n.items = *new([]*Item)
 	return n
@@ -24,7 +24,7 @@ func (n *Node) Insert(b []byte) {
 			node.items = append(node.items, &Item{
 				val:   vb,
 				last:  false,
-				child: NewTrie(),
+				child: New(),
 			})
 			tmpitem = node.items[len(node.items)-1]
 			node = tmpitem.child
