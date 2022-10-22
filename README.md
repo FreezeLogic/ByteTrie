@@ -9,7 +9,7 @@ go get github.com/dghubble/trie
 ## Usage
 First we need to initialize Trie
 ```go
-trie := bytetrie.NewTrie()
+trie := bytetrie.New()
 ```
 When this is done, we can insert some data using the Insert method.
 ```go
@@ -34,7 +34,7 @@ import (
 
 func main() {
   // initializing Trie
-	trie := bytetrie.NewTrie()
+	trie := bytetrie.New()
   
   // Insert data into the Trie
 	trie.Insert([]byte{0x00, 0xFF})			// 1
